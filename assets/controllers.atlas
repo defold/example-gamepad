@@ -1,0 +1,15 @@
+images {
+  image: "/assets/ps4/gamepad-ps4.png"
+}
+images {
+  image: "/assets/ps5/gamepad-ps5.png"
+}
+images {
+  image: "/assets/generic/gamepad-generic.png"
+}
+images {
+  image: "/assets/switch/gamepad-switch.png"
+}
+images {
+  image: "/assets/xbox/gamepad-xbox.png"
+}

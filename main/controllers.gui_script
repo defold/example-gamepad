@@ -1,0 +1,471 @@
+local GAMEPAD_CONNECTED = hash("gamepad_connected")
+local GAMEPAD_DISCONNECTED = hash("gamepad_disconnected")
+local GAMEPAD_RAW = hash("gamepad_raw")
+local GAMEPAD_LTRIGGER = hash("gamepad_ltrigger")
+local GAMEPAD_RTRIGGER = hash("gamepad_rtrigger")
+
+local TEMPLATE_IDS = {
+	generic = "generic_template",
+	xbox = "xbox_template",
+	ps4 = "ps4_template",
+	ps5 = "ps5_template",
+	switch = "switch_template",
+}
+
+local TEMPLATE_ROOTS = {
+	[TEMPLATE_IDS.generic] = "generic_template/panel_root",
+	[TEMPLATE_IDS.xbox] = "xbox_template/panel_root",
+	[TEMPLATE_IDS.ps4] = "ps4_template/panel_root",
+	[TEMPLATE_IDS.ps5] = "ps5_template/panel_root",
+	[TEMPLATE_IDS.switch] = "switch_template/panel_root",
+}
+
+local PANEL_SPACING = 32
+local PANEL_PADDING = 48
+local STICK_OVERLAY_OFFSET_SCALE = 20
+
+local set_controller_title
+local set_controller_footer
+
+local OVERLAY_ACTIONS = {
+	[hash("gamepad_rpad_up")] = "gamepad_rpad_up",
+	[hash("gamepad_rpad_right")] = "gamepad_rpad_right",
+	[hash("gamepad_rpad_down")] = "gamepad_rpad_down",
+	[hash("gamepad_rpad_left")] = "gamepad_rpad_left",
+	[hash("gamepad_lpad_up")] = "gamepad_lpad_up",
+	[hash("gamepad_lpad_down")] = "gamepad_lpad_down",
+	[hash("gamepad_lpad_left")] = "gamepad_lpad_left",
+	[hash("gamepad_lpad_right")] = "gamepad_lpad_right",
+	[hash("gamepad_lshoulder")] = "gamepad_lshoulder",
+	[hash("gamepad_rshoulder")] = "gamepad_rshoulder",
+	[hash("gamepad_back")] = "gamepad_back",
+	[hash("gamepad_start")] = "gamepad_start",
+	[hash("gamepad_guide")] = "gamepad_guide",
+	[hash("gamepad_lstick_click")] = "gamepad_lstick_click",
+	[hash("gamepad_rstick_click")] = "gamepad_rstick_click",
+	[GAMEPAD_LTRIGGER] = "gamepad_ltrigger",
+	[GAMEPAD_RTRIGGER] = "gamepad_rtrigger",
+}
+
+local STICK_TEXT_ACTIONS = {
+	[hash("gamepad_lstick_left")] = "gamepad_lstick_horiz_text",
+	[hash("gamepad_lstick_right")] = "gamepad_lstick_horiz_text",
+	[hash("gamepad_lstick_up")] = "gamepad_lstick_vert_text",
+	[hash("gamepad_lstick_down")] = "gamepad_lstick_vert_text",
+	[hash("gamepad_rstick_left")] = "gamepad_rstick_horiz_text",
+	[hash("gamepad_rstick_right")] = "gamepad_rstick_horiz_text",
+	[hash("gamepad_rstick_up")] = "gamepad_rstick_vert_text",
+	[hash("gamepad_rstick_down")] = "gamepad_rstick_vert_text",
+	[GAMEPAD_LTRIGGER] = "gamepad_ltrigger_text",
+	[GAMEPAD_RTRIGGER] = "gamepad_rtrigger_text",
+}
+
+local STICK_TEXT_LABELS = {
+	gamepad_lstick_horiz_text = "LS X:",
+	gamepad_lstick_vert_text = "LS Y:",
+	gamepad_rstick_horiz_text = "RS X:",
+	gamepad_rstick_vert_text = "RS Y:",
+	gamepad_ltrigger_text = "L2:",
+	gamepad_rtrigger_text = "R2:",
+}
+
+local STICK_AXIS_ACTIONS = {
+	[hash("gamepad_lstick_left")] = { stick = "left", axis = "x", mult = -1 },
+	[hash("gamepad_lstick_right")] = { stick = "left", axis = "x", mult = 1 },
+	[hash("gamepad_lstick_up")] = { stick = "left", axis = "y", mult = 1 },
+	[hash("gamepad_lstick_down")] = { stick = "left", axis = "y", mult = -1 },
+	[hash("gamepad_rstick_left")] = { stick = "right", axis = "x", mult = -1 },
+	[hash("gamepad_rstick_right")] = { stick = "right", axis = "x", mult = 1 },
+	[hash("gamepad_rstick_up")] = { stick = "right", axis = "y", mult = 1 },
+	[hash("gamepad_rstick_down")] = { stick = "right", axis = "y", mult = -1 },
+}
+
+local function safe_string(value)
+	if value == nil then
+		return "nil"
+	end
+
+	return tostring(value)
+end
+
+local function table_to_bit_string(values)
+	if values == nil then
+		return "nil"
+	end
+
+	local parts = {}
+
+	for index = 1, #values do
+		local value = values[index]
+		if value == true or value == 1 then
+			parts[index] = "1"
+		else
+			parts[index] = "0"
+		end
+	end
+
+	return table.concat(parts)
+end
+
+local function table_to_string(values)
+	if values == nil then
+		return "nil"
+	end
+
+	local parts = {}
+
+	for index = 1, #values do
+		parts[index] = safe_string(values[index])
+	end
+
+	return table.concat(parts, ",")
+end
+
+local function has_text(value)
+	return value ~= nil and value ~= ""
+end
+
+local function string_contains(text, pattern)
+	return string.find(string.lower(text), string.lower(pattern), 1, true) ~= nil
+end
+
+local function detect_template_id(gamepad_name)
+	-- hacks for now
+	if gamepad_name == "Wireless Controller" then
+		return TEMPLATE_IDS.ps4
+	end
+
+	if gamepad_name == "Controller" then
+		return TEMPLATE_IDS.xbox
+	end
+
+	if gamepad_name == "Pro Controller" then
+		return TEMPLATE_IDS.switch
+	end
+
+	return TEMPLATE_IDS.generic
+end
+
+local function get_grid_dimensions(controller_count)
+	if controller_count <= 1 then
+		return 1, 1
+	end
+
+	if controller_count == 2 then
+		return 1, 2
+	end
+
+	if controller_count <= 4 then
+		return 2, 2
+	end
+
+	return math.ceil(controller_count / 4), 4
+end
+
+local function get_panel_scale(self, rows, columns)
+	local available_width = math.max(gui.get_width() - PANEL_PADDING * 2, 1)
+	local available_height = math.max(gui.get_height() - PANEL_PADDING * 2, 1)
+	local total_width = columns * self.panel_size.x + (columns - 1) * PANEL_SPACING
+	local total_height = rows * self.panel_size.y + (rows - 1) * PANEL_SPACING
+	local width_scale = available_width / total_width
+	local height_scale = available_height / total_height
+
+	return math.min(width_scale, height_scale, 1.0)
+end
+
+local function get_cell_center(self, columns, rows, column_index, row_index, scale)
+	local scaled_width = scale * columns * self.panel_size.x + scale * (columns - 1) * PANEL_SPACING
+	local scaled_height = scale * rows * self.panel_size.y + scale * (rows - 1) * PANEL_SPACING
+	local start_x = -scaled_width * 0.5
+	local start_y = scaled_height * 0.5
+	local cell_width = self.panel_size.x * scale
+	local cell_height = self.panel_size.y * scale
+	local spacing = PANEL_SPACING * scale
+
+	return vmath.vector3(
+		start_x + column_index * (cell_width + spacing) + cell_width * 0.5,
+		start_y - row_index * (cell_height + spacing) - cell_height * 0.5,
+		0
+	)
+end
+
+local function sorted_controller_keys(self)
+	local keys = {}
+
+	for gamepad in pairs(self.controllers) do
+		keys[#keys + 1] = gamepad
+	end
+
+	table.sort(keys, function(a, b)
+		return tostring(a) < tostring(b)
+	end)
+
+	return keys
+end
+
+local function relayout_controllers(self)
+	local keys = sorted_controller_keys(self)
+	local count = #keys
+
+	if count == 0 then
+		return
+	end
+
+	local rows, columns = get_grid_dimensions(count)
+	local scale = get_panel_scale(self, rows, columns)
+	local screen_center = vmath.vector3(gui.get_width() * 0.5, gui.get_height() * 0.5, 0)
+
+	for index, gamepad in ipairs(keys) do
+		local controller = self.controllers[gamepad]
+		local zero_based = index - 1
+		local row_index = math.floor(zero_based / columns)
+		local column_index = zero_based % columns
+		local position = get_cell_center(self, columns, rows, column_index, row_index, scale)
+		local screen_position = screen_center + position
+
+		gui.set_position(controller.root, screen_position)
+		gui.set_scale(controller.root, vmath.vector3(scale, scale, 1.0))
+	end
+end
+
+local function delete_controller(self, gamepad)
+	local controller = self.controllers[gamepad]
+	if controller == nil then
+		return
+	end
+
+	gui.delete_node(controller.root)
+	self.controllers[gamepad] = nil
+	relayout_controllers(self)
+end
+
+local function build_raw_footer_text(message)
+	return table.concat({
+		"gamepad=" .. safe_string(message.gamepad),
+		"buttons=" .. table_to_bit_string(message.gamepad_buttons),
+		"hats=" .. table_to_bit_string(message.gamepad_hats),
+		"axes=" .. table_to_string(message.gamepad_axis),
+	}, "\n")
+end
+
+local function action_to_enabled(action)
+	if action.pressed or action.repeated then
+		return true
+	end
+
+	if action.released then
+		return false
+	end
+
+	if type(action.value) == "number" then
+		return action.value ~= 0
+	end
+
+	return false
+end
+
+local function action_value_to_text(action, multiplier)
+	if type(action.value) == "number" then
+		return string.format("%.3f", action.value * multiplier)
+	end
+
+	return safe_string(action.value)
+end
+
+local function build_stick_text(node_id, action, multiplier)
+	return STICK_TEXT_LABELS[node_id] .. " " .. action_value_to_text(action, multiplier)
+end
+
+local function update_stick_overlay(controller, message_id, action)
+	local stick_axis = STICK_AXIS_ACTIONS[message_id]
+	if stick_axis == nil then
+		return
+	end
+
+	local stick_state = controller.stick_overlay_state[stick_axis.stick]
+	if stick_state == nil then
+		return
+	end
+
+	local value = 0
+	if type(action.value) == "number" then
+		value = action.value * stick_axis.mult
+	end
+
+	stick_state[stick_axis.axis] = value
+	local enabled = stick_state.x ~= 0 or stick_state.y ~= 0
+	gui.set_enabled(stick_state.node, enabled)
+
+	if enabled then
+		gui.set_position(stick_state.node, stick_state.base_position + vmath.vector3(
+			stick_state.x * STICK_OVERLAY_OFFSET_SCALE,
+			stick_state.y * STICK_OVERLAY_OFFSET_SCALE,
+			0
+		))
+	else
+		gui.set_position(stick_state.node, stick_state.base_position)
+	end
+end
+
+local function is_trigger_overlay_enabled(message_id, action)
+	if message_id ~= GAMEPAD_LTRIGGER and message_id ~= GAMEPAD_RTRIGGER then
+		return nil
+	end
+
+	if type(action.value) == "number" then
+		return action.value > 0
+	end
+
+	return false
+end
+
+local function build_default_axis_text(node_id)
+	return STICK_TEXT_LABELS[node_id] .. " 0.000"
+end
+
+local function create_controller(self, gamepad, gamepad_name)
+	local controller = self.controllers[gamepad]
+	if controller ~= nil then
+		return controller
+	end
+
+	local template_id = detect_template_id(gamepad_name)
+	local clones = gui.clone_tree(self.template_roots[template_id])
+	local root = clones[TEMPLATE_ROOTS[template_id]]
+
+	gui.set_enabled(root, true)
+
+	controller = {
+		root = root,
+		gamepad = gamepad,
+		template_id = template_id,
+		title_node = clones[template_id .. "/title"],
+		footer_note_node = clones[template_id .. "/footer_note"],
+		overlay_nodes = {},
+		stick_text_nodes = {},
+		stick_overlay_state = {},
+	}
+
+	for message_id, action_name in pairs(OVERLAY_ACTIONS) do
+		local overlay_node = clones[template_id .. "/" .. action_name .. "_overlay"]
+		if overlay_node ~= nil then
+			controller.overlay_nodes[message_id] = overlay_node
+		end
+	end
+
+	for message_id, node_id in pairs(STICK_TEXT_ACTIONS) do
+		local text_node = clones[template_id .. "/" .. node_id]
+		if text_node ~= nil then
+			local action = STICK_AXIS_ACTIONS[message_id]
+			gui.set_text(text_node, build_default_axis_text(node_id))
+			controller.stick_text_nodes[message_id] = {
+				node = text_node,
+				node_id = node_id,
+				mult = action and action.mult or 1.0
+			}
+		end
+	end
+
+	local left_stick_overlay = clones[template_id .. "/gamepad_lstick_overlay"]
+	if left_stick_overlay ~= nil then
+		controller.stick_overlay_state.left = {
+			node = left_stick_overlay,
+			base_position = gui.get_position(left_stick_overlay),
+			x = 0,
+			y = 0,
+		}
+	end
+
+	local right_stick_overlay = clones[template_id .. "/gamepad_rstick_overlay"]
+	if right_stick_overlay ~= nil then
+		controller.stick_overlay_state.right = {
+			node = right_stick_overlay,
+			base_position = gui.get_position(right_stick_overlay),
+			x = 0,
+			y = 0,
+		}
+	end
+
+	self.controllers[gamepad] = controller
+	set_controller_title(controller, gamepad_name)
+	relayout_controllers(self)
+	return controller
+end
+
+function set_controller_title(controller, gamepad_name)
+	if has_text(gamepad_name) then
+		gui.set_text(controller.title_node, gamepad_name)
+	else
+		gui.set_text(controller.title_node, "Unknown Gamepad")
+	end
+end
+
+function set_controller_footer(controller, text)
+	gui.set_text(controller.footer_note_node, text)
+end
+
+local function update_controller(self, gamepad, message_id, action)
+	local controller = self.controllers[gamepad]
+	if controller == nil then
+		return nil
+	end
+
+	if message_id == GAMEPAD_RAW then
+		set_controller_footer(controller, build_raw_footer_text(action))
+		return controller
+	end
+
+	local overlay_node = controller.overlay_nodes[message_id]
+	if overlay_node ~= nil then
+		local enabled = is_trigger_overlay_enabled(message_id, action)
+		if enabled == nil then
+			enabled = action_to_enabled(action)
+		end
+		gui.set_enabled(overlay_node, enabled)
+	end
+
+	local stick_text_node = controller.stick_text_nodes[message_id]
+	if stick_text_node ~= nil then
+		gui.set_text(stick_text_node.node, build_stick_text(stick_text_node.node_id, action, stick_text_node.mult))
+	end
+
+	update_stick_overlay(controller, message_id, action)
+
+	return controller
+end
+
+function init(self)
+	self.grid_root = gui.get_node("grid_root")
+	self.template_roots = {
+		[TEMPLATE_IDS.generic] = gui.get_node(TEMPLATE_ROOTS[TEMPLATE_IDS.generic]),
+		[TEMPLATE_IDS.xbox] = gui.get_node(TEMPLATE_ROOTS[TEMPLATE_IDS.xbox]),
+		[TEMPLATE_IDS.ps4] = gui.get_node(TEMPLATE_ROOTS[TEMPLATE_IDS.ps4]),
+		[TEMPLATE_IDS.ps5] = gui.get_node(TEMPLATE_ROOTS[TEMPLATE_IDS.ps5]),
+		[TEMPLATE_IDS.switch] = gui.get_node(TEMPLATE_ROOTS[TEMPLATE_IDS.switch]),
+	}
+	self.panel_size = gui.get_size(self.template_roots[TEMPLATE_IDS.generic])
+	self.controllers = {}
+
+	print("controllers.gui_script: ready")
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == GAMEPAD_CONNECTED then
+		create_controller(self, message.gamepad, message.gamepad_name)
+		return
+	end
+
+	if message_id == GAMEPAD_DISCONNECTED then
+		delete_controller(self, message.gamepad)
+		return
+	end
+
+	if message.gamepad == nil then
+		return
+	end
+
+	local controller = update_controller(self, message.gamepad, message_id, message)
+	if controller == nil then
+		return
+	end
+end

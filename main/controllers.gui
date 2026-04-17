@@ -1,0 +1,890 @@
+script: "/main/controllers.gui_script"
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+textures {
+  name: "controllers"
+  texture: "/assets/controllers.atlas"
+}
+nodes {
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  id: "grid_root"
+  inherit_alpha: true
+  alpha: 0.0
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "generic_template"
+  inherit_alpha: true
+  template: "/templates/gamepad_generic.gui"
+  enabled: false
+}
+nodes {
+  type: TYPE_BOX
+  id: "generic_template/panel_root"
+  parent: "generic_template"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "generic_template/header_bar"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "generic_template/title"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "generic_template/controller_body"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_rpad_up_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_rpad_right_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_rpad_down_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_rpad_left_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_lpad_up_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_lpad_down_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_lpad_left_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_lpad_right_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_lshoulder_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_rshoulder_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_back_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_start_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_guide_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_lstick_click_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_rstick_click_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "generic_template/gamepad_ltrigger_text"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "generic_template/gamepad_rtrigger_text"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "generic_template/gamepad_lstick_horiz_text"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "generic_template/gamepad_lstick_vert_text"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "generic_template/gamepad_rstick_horiz_text"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "generic_template/gamepad_rstick_vert_text"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "generic_template/footer_note"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "xbox_template"
+  inherit_alpha: true
+  template: "/templates/gamepad_xbox.gui"
+  enabled: false
+}
+nodes {
+  type: TYPE_BOX
+  id: "xbox_template/panel_root"
+  parent: "xbox_template"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "xbox_template/header_bar"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "xbox_template/title"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "xbox_template/controller_body"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_rpad_up_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_rpad_right_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_rpad_down_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_rpad_left_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_lpad_up_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_lpad_down_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_lpad_left_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_lpad_right_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_lshoulder_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_rshoulder_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_back_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_start_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_guide_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_lstick_click_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_rstick_click_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "xbox_template/gamepad_ltrigger_text"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "xbox_template/gamepad_rtrigger_text"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "xbox_template/gamepad_lstick_horiz_text"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "xbox_template/gamepad_lstick_vert_text"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "xbox_template/gamepad_rstick_horiz_text"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "xbox_template/gamepad_rstick_vert_text"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "xbox_template/footer_note"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "ps4_template"
+  inherit_alpha: true
+  template: "/templates/gamepad_ps4.gui"
+  enabled: false
+}
+nodes {
+  type: TYPE_BOX
+  id: "ps4_template/panel_root"
+  parent: "ps4_template"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "ps4_template/header_bar"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps4_template/title"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "ps4_template/controller_body"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_rpad_up_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_rpad_right_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_rpad_down_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_rpad_left_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_lpad_up_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_lpad_down_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_lpad_left_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_lpad_right_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_lshoulder_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_rshoulder_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_ltrigger_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_rtrigger_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_back_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_start_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_guide_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/touchpad_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_lstick_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_rstick_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_lstick_click_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps4_template/gamepad_rstick_click_overlay"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps4_template/gamepad_ltrigger_text"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps4_template/gamepad_rtrigger_text"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps4_template/gamepad_lstick_horiz_text"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps4_template/gamepad_lstick_vert_text"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps4_template/gamepad_rstick_horiz_text"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps4_template/gamepad_rstick_vert_text"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps4_template/footer_note"
+  parent: "ps4_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "ps5_template"
+  inherit_alpha: true
+  template: "/templates/gamepad_ps5.gui"
+  enabled: false
+}
+nodes {
+  type: TYPE_BOX
+  id: "ps5_template/panel_root"
+  parent: "ps5_template"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "ps5_template/header_bar"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps5_template/title"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "ps5_template/controller_body"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_rpad_up_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_rpad_right_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_rpad_down_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_rpad_left_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_lpad_up_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_lpad_down_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_lpad_left_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_lpad_right_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_lshoulder_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_rshoulder_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_back_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_start_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_guide_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/touchpad_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_lstick_click_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_rstick_click_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps5_template/gamepad_ltrigger_text"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps5_template/gamepad_rtrigger_text"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps5_template/gamepad_lstick_horiz_text"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps5_template/gamepad_lstick_vert_text"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps5_template/gamepad_rstick_horiz_text"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps5_template/gamepad_rstick_vert_text"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ps5_template/footer_note"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "switch_template"
+  inherit_alpha: true
+  template: "/templates/gamepad_switch.gui"
+  enabled: false
+}
+nodes {
+  type: TYPE_BOX
+  id: "switch_template/panel_root"
+  parent: "switch_template"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "switch_template/header_bar"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "switch_template/title"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "switch_template/controller_body"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_rpad_up_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_rpad_right_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_rpad_down_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_rpad_left_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_lpad_up_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_lpad_down_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_lpad_left_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_lpad_right_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_lshoulder_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_rshoulder_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_back_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_start_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_guide_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/capture_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_lstick_click_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_rstick_click_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "switch_template/gamepad_ltrigger_text"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "switch_template/gamepad_rtrigger_text"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "switch_template/gamepad_lstick_horiz_text"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "switch_template/gamepad_lstick_vert_text"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "switch_template/gamepad_rstick_horiz_text"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "switch_template/gamepad_rstick_vert_text"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "switch_template/footer_note"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+layers {
+  name: "background"
+}
+layers {
+  name: "art"
+}
+layers {
+  name: "overlay"
+}
+layers {
+  name: "text"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

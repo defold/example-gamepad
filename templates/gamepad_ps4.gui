@@ -1,0 +1,633 @@
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+textures {
+  name: "controllers"
+  texture: "/assets/controllers.atlas"
+}
+nodes {
+  size {
+    x: 640.0
+    y: 720.0
+  }
+  color {
+    x: 0.08235294
+    y: 0.11372549
+    z: 0.18431373
+  }
+  type: TYPE_BOX
+  id: "panel_root"
+  layer: "background"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 294.0
+  }
+  size {
+    x: 592.0
+    y: 48.0
+  }
+  color {
+    x: 0.17254902
+    y: 0.2784314
+    z: 0.62352943
+  }
+  type: TYPE_BOX
+  id: "header_bar"
+  parent: "panel_root"
+  layer: "background"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 298.0
+  }
+  size {
+    x: 540.0
+    y: 32.0
+  }
+  type: TYPE_TEXT
+  text: "PlayStation 4 Template"
+  font: "default"
+  id: "title"
+  parent: "panel_root"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 12.0
+  }
+  size {
+    x: 512.0
+    y: 512.0
+  }
+  type: TYPE_BOX
+  texture: "controllers/gamepad-ps4"
+  id: "controller_body"
+  parent: "panel_root"
+  layer: "art"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 155.0
+    y: 63.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_rpad_up_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 193.0
+    y: 24.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_rpad_right_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 155.0
+    y: -12.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_rpad_down_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 118.0
+    y: 26.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_rpad_left_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -160.0
+    y: 52.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_lpad_up_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -160.0
+    y: 1.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_lpad_down_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -187.0
+    y: 25.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_lpad_left_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -133.0
+    y: 26.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_lpad_right_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -153.0
+    y: 103.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_lshoulder_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 153.0
+    y: 103.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_rshoulder_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -175.0
+    y: 116.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_ltrigger_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 175.0
+    y: 117.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_rtrigger_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -100.0
+    y: 73.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_back_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 98.0
+    y: 78.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_start_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -1.0
+    y: -48.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_guide_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    y: 48.0
+  }
+  size {
+    x: 36.0
+    y: 18.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "touchpad_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  innerRadius: 0.45
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -83.0
+    y: -44.0
+  }
+  size {
+    x: 20.0
+    y: 20.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_lstick_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 81.0
+    y: -44.0
+  }
+  size {
+    x: 20.0
+    y: 20.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_rstick_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -83.0
+    y: -44.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_lstick_click_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 80.0
+    y: -45.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "gamepad_rstick_click_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -207.0
+    y: 143.0
+  }
+  size {
+    x: 160.0
+    y: 28.0
+  }
+  type: TYPE_TEXT
+  text: "L2:"
+  font: "default"
+  id: "gamepad_ltrigger_text"
+  pivot: PIVOT_W
+  parent: "panel_root"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 109.0
+    y: 143.0
+  }
+  size {
+    x: 160.0
+    y: 28.0
+  }
+  type: TYPE_TEXT
+  text: "R2:"
+  font: "default"
+  id: "gamepad_rtrigger_text"
+  pivot: PIVOT_W
+  parent: "panel_root"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -127.0
+    y: -99.0
+  }
+  size {
+    x: 120.0
+    y: 24.0
+  }
+  type: TYPE_TEXT
+  text: "LS X"
+  font: "default"
+  id: "gamepad_lstick_horiz_text"
+  pivot: PIVOT_W
+  parent: "panel_root"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -127.0
+    y: -123.0
+  }
+  size {
+    x: 120.0
+    y: 24.0
+  }
+  type: TYPE_TEXT
+  text: "LS Y"
+  font: "default"
+  id: "gamepad_lstick_vert_text"
+  pivot: PIVOT_W
+  parent: "panel_root"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 40.0
+    y: -99.0
+  }
+  size {
+    x: 120.0
+    y: 24.0
+  }
+  type: TYPE_TEXT
+  text: "RS X"
+  font: "default"
+  id: "gamepad_rstick_horiz_text"
+  pivot: PIVOT_W
+  parent: "panel_root"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 40.0
+    y: -123.0
+  }
+  size {
+    x: 120.0
+    y: 24.0
+  }
+  type: TYPE_TEXT
+  text: "RS Y"
+  font: "default"
+  id: "gamepad_rstick_vert_text"
+  pivot: PIVOT_W
+  parent: "panel_root"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -320.0
+    y: -304.0
+  }
+  size {
+    x: 640.0
+    y: 32.0
+  }
+  color {
+    x: 0.85882354
+    y: 0.9019608
+    z: 0.9647059
+  }
+  type: TYPE_TEXT
+  font: "default"
+  id: "footer_note"
+  pivot: PIVOT_W
+  parent: "panel_root"
+  layer: "text"
+  inherit_alpha: true
+}
+layers {
+  name: "background"
+}
+layers {
+  name: "art"
+}
+layers {
+  name: "overlay"
+}
+layers {
+  name: "text"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

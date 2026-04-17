@@ -1,0 +1,28 @@
+local CONTROLLERS_GUI = msg.url("main:/go1#controllers")
+local GAMEPAD_CONNECTED = hash("gamepad_connected")
+local GAMEPAD_DISCONNECTED = hash("gamepad_disconnected")
+local GAMEPAD_RAW = hash("gamepad_raw")
+local TOUCH = hash("touch")
+
+local function is_gamepad_action(action_id, action)
+	return action.gamepad ~= nil
+		or action_id == GAMEPAD_CONNECTED
+		or action_id == GAMEPAD_DISCONNECTED
+		or action_id == GAMEPAD_RAW
+end
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	print("main.script: input focus acquired")
+end
+
+function on_input(self, action_id, action)
+	if action_id == TOUCH and action.pressed then
+		print("main.script: touch pressed")
+	end
+
+	if is_gamepad_action(action_id, action) then
+		--pprint(action_id, action)
+		msg.post(CONTROLLERS_GUI, action_id, action)
+	end
+end
