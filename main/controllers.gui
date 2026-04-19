@@ -128,6 +128,30 @@ nodes {
 }
 nodes {
   type: TYPE_PIE
+  id: "generic_template/gamepad_ltrigger_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_rtrigger_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_lstick_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "generic_template/gamepad_rstick_overlay"
+  parent: "generic_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
   id: "generic_template/gamepad_lstick_click_overlay"
   parent: "generic_template/panel_root"
   template_node_child: true
@@ -273,6 +297,18 @@ nodes {
 }
 nodes {
   type: TYPE_PIE
+  id: "xbox_template/gamepad_ltrigger_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_rtrigger_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
   id: "xbox_template/gamepad_back_overlay"
   parent: "xbox_template/panel_root"
   template_node_child: true
@@ -286,6 +322,18 @@ nodes {
 nodes {
   type: TYPE_PIE
   id: "xbox_template/gamepad_guide_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_lstick_overlay"
+  parent: "xbox_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "xbox_template/gamepad_rstick_overlay"
   parent: "xbox_template/panel_root"
   template_node_child: true
 }
@@ -653,6 +701,30 @@ nodes {
 }
 nodes {
   type: TYPE_PIE
+  id: "ps5_template/gamepad_ltrigger_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_rtrigger_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_lstick_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "ps5_template/gamepad_rstick_overlay"
+  parent: "ps5_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
   id: "ps5_template/gamepad_lstick_click_overlay"
   parent: "ps5_template/panel_root"
   template_node_child: true
@@ -817,6 +889,30 @@ nodes {
 nodes {
   type: TYPE_PIE
   id: "switch_template/capture_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_ltrigger_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_rtrigger_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_lstick_overlay"
+  parent: "switch_template/panel_root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_PIE
+  id: "switch_template/gamepad_rstick_overlay"
   parent: "switch_template/panel_root"
   template_node_child: true
 }

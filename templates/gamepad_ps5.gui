@@ -366,6 +366,86 @@ nodes {
 }
 nodes {
   position {
+    x: -175.0
+    y: 116.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_ltrigger_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 175.0
+    y: 117.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_rtrigger_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -83.0
+    y: -44.0
+  }
+  size {
+    x: 20.0
+    y: 20.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_lstick_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 81.0
+    y: -44.0
+  }
+  size {
+    x: 20.0
+    y: 20.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_rstick_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
     x: -126.0
     y: -114.0
   }

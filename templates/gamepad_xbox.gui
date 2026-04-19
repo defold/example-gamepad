@@ -73,8 +73,8 @@ nodes {
 }
 nodes {
   position {
-    x: 88.0
-    y: 60.0
+    x: 125.0
+    y: 127.0
   }
   size {
     x: 28.0
@@ -94,8 +94,8 @@ nodes {
 }
 nodes {
   position {
-    x: 118.0
-    y: 30.0
+    x: 159.0
+    y: 94.0
   }
   size {
     x: 28.0
@@ -115,7 +115,8 @@ nodes {
 }
 nodes {
   position {
-    x: 88.0
+    x: 127.0
+    y: 60.0
   }
   size {
     x: 28.0
@@ -135,8 +136,8 @@ nodes {
 }
 nodes {
   position {
-    x: 58.0
-    y: 30.0
+    x: 92.0
+    y: 94.0
   }
   size {
     x: 28.0
@@ -156,7 +157,7 @@ nodes {
 }
 nodes {
   position {
-    x: -124.0
+    x: -65.0
     y: 42.0
   }
   size {
@@ -177,8 +178,8 @@ nodes {
 }
 nodes {
   position {
-    x: -124.0
-    y: 14.0
+    x: -64.0
+    y: -4.0
   }
   size {
     x: 24.0
@@ -198,8 +199,8 @@ nodes {
 }
 nodes {
   position {
-    x: -152.0
-    y: 28.0
+    x: -85.0
+    y: 21.0
   }
   size {
     x: 24.0
@@ -219,8 +220,8 @@ nodes {
 }
 nodes {
   position {
-    x: -96.0
-    y: 28.0
+    x: -42.0
+    y: 18.0
   }
   size {
     x: 24.0
@@ -240,8 +241,8 @@ nodes {
 }
 nodes {
   position {
-    x: -172.0
-    y: 188.0
+    x: -130.0
+    y: 172.0
   }
   size {
     x: 28.0
@@ -261,8 +262,8 @@ nodes {
 }
 nodes {
   position {
-    x: 202.0
-    y: 188.0
+    x: 130.0
+    y: 172.0
   }
   size {
     x: 28.0
@@ -282,8 +283,48 @@ nodes {
 }
 nodes {
   position {
-    x: -22.0
-    y: 118.0
+    x: -144.0
+    y: 178.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_ltrigger_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 144.0
+    y: 178.0
+  }
+  size {
+    x: 28.0
+    y: 28.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_rtrigger_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -35.0
+    y: 95.0
   }
   size {
     x: 24.0
@@ -303,8 +344,8 @@ nodes {
 }
 nodes {
   position {
-    x: 24.0
-    y: 118.0
+    x: 35.0
+    y: 95.0
   }
   size {
     x: 24.0
@@ -324,12 +365,11 @@ nodes {
 }
 nodes {
   position {
-    x: 2.0
-    y: 142.0
+    y: 147.0
   }
   size {
-    x: 24.0
-    y: 24.0
+    x: 32.0
+    y: 32.0
   }
   color {
     x: 0.0
@@ -345,8 +385,48 @@ nodes {
 }
 nodes {
   position {
-    x: -126.0
-    y: -114.0
+    x: -125.0
+    y: 98.0
+  }
+  size {
+    x: 20.0
+    y: 20.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_lstick_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: 63.0
+    y: 24.0
+  }
+  size {
+    x: 20.0
+    y: 20.0
+  }
+  color {
+    z: 0.5019608
+  }
+  type: TYPE_PIE
+  id: "gamepad_rstick_overlay"
+  parent: "panel_root"
+  layer: "overlay"
+  inherit_alpha: true
+  alpha: 0.7
+  enabled: false
+}
+nodes {
+  position {
+    x: -125.0
+    y: 98.0
   }
   size {
     x: 28.0
@@ -366,8 +446,8 @@ nodes {
 }
 nodes {
   position {
-    x: 122.0
-    y: -114.0
+    x: 63.0
+    y: 24.0
   }
   size {
     x: 28.0

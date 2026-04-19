@@ -23,6 +23,12 @@ local TEMPLATE_ROOTS = {
 local PANEL_SPACING = 32
 local PANEL_PADDING = 48
 local STICK_OVERLAY_OFFSET_SCALE = 20
+local RAW_AXIS_LSTICK_X = 1
+local RAW_AXIS_LSTICK_Y = 2
+local RAW_AXIS_RSTICK_X = 3
+local RAW_AXIS_RSTICK_Y = 4
+local RAW_AXIS_LTRIGGER = 5
+local RAW_AXIS_RTRIGGER = 6
 
 local set_controller_title
 local set_controller_footer
@@ -78,6 +84,13 @@ local STICK_AXIS_ACTIONS = {
 	[hash("gamepad_rstick_right")] = { stick = "right", axis = "x", mult = 1 },
 	[hash("gamepad_rstick_up")] = { stick = "right", axis = "y", mult = 1 },
 	[hash("gamepad_rstick_down")] = { stick = "right", axis = "y", mult = -1 },
+}
+
+local RAW_STICK_AXIS_TO_NODE = {
+	[RAW_AXIS_LSTICK_X] = { message_id = hash("gamepad_lstick_right"), stick = "left", axis = "x", mult = 1 },
+	[RAW_AXIS_LSTICK_Y] = { message_id = hash("gamepad_lstick_up"), stick = "left", axis = "y", mult = -1 },
+	[RAW_AXIS_RSTICK_X] = { message_id = hash("gamepad_rstick_right"), stick = "right", axis = "x", mult = 1 },
+	[RAW_AXIS_RSTICK_Y] = { message_id = hash("gamepad_rstick_up"), stick = "right", axis = "y", mult = -1 },
 }
 
 local function safe_string(value)
@@ -139,9 +152,9 @@ local function detect_template_id(gamepad_name)
 		return TEMPLATE_IDS.xbox
 	end
 
-	if gamepad_name == "Pro Controller" then
-		return TEMPLATE_IDS.switch
-	end
+	-- if gamepad_name == "Pro Controller" then
+	-- 	return TEMPLATE_IDS.switch
+	-- end
 
 	return TEMPLATE_IDS.generic
 end
@@ -274,6 +287,10 @@ end
 
 local function build_stick_text(node_id, action, multiplier)
 	return STICK_TEXT_LABELS[node_id] .. " " .. action_value_to_text(action, multiplier)
+end
+
+local function build_raw_axis_text(node_id, value, multiplier)
+	return STICK_TEXT_LABELS[node_id] .. " " .. string.format("%.3f", value * multiplier)
 end
 
 local function update_stick_overlay(controller, message_id, action)
