@@ -58,6 +58,26 @@ nodes {
 }
 nodes {
   position {
+    y: -16.0
+  }
+  scale {
+    x: 0.75
+    y: 0.75
+  }
+  size {
+    x: 540.0
+    y: 32.0
+  }
+  type: TYPE_TEXT
+  text: "<guid>"
+  font: "default"
+  id: "guid"
+  parent: "title"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
     y: 12.0
   }
   size {
@@ -73,8 +93,8 @@ nodes {
 }
 nodes {
   position {
-    x: 84.0
-    y: 58.0
+    x: 156.0
+    y: 61.0
   }
   size {
     x: 28.0
@@ -94,8 +114,8 @@ nodes {
 }
 nodes {
   position {
-    x: 114.0
-    y: 28.0
+    x: 195.0
+    y: 24.0
   }
   size {
     x: 28.0
@@ -115,8 +135,8 @@ nodes {
 }
 nodes {
   position {
-    x: 84.0
-    y: -2.0
+    x: 157.0
+    y: -11.0
   }
   size {
     x: 28.0
@@ -136,8 +156,8 @@ nodes {
 }
 nodes {
   position {
-    x: 54.0
-    y: 28.0
+    x: 119.0
+    y: 27.0
   }
   size {
     x: 28.0
@@ -157,8 +177,8 @@ nodes {
 }
 nodes {
   position {
-    x: -124.0
-    y: 42.0
+    x: -159.0
+    y: 54.0
   }
   size {
     x: 24.0
@@ -178,8 +198,7 @@ nodes {
 }
 nodes {
   position {
-    x: -124.0
-    y: 14.0
+    x: -160.0
   }
   size {
     x: 24.0
@@ -199,8 +218,8 @@ nodes {
 }
 nodes {
   position {
-    x: -152.0
-    y: 28.0
+    x: -189.0
+    y: 25.0
   }
   size {
     x: 24.0
@@ -220,8 +239,8 @@ nodes {
 }
 nodes {
   position {
-    x: -96.0
-    y: 28.0
+    x: -133.0
+    y: 25.0
   }
   size {
     x: 24.0
@@ -241,8 +260,8 @@ nodes {
 }
 nodes {
   position {
-    x: -172.0
-    y: 188.0
+    x: -142.0
+    y: 104.0
   }
   size {
     x: 28.0
@@ -262,8 +281,8 @@ nodes {
 }
 nodes {
   position {
-    x: 202.0
-    y: 188.0
+    x: 142.0
+    y: 104.0
   }
   size {
     x: 28.0
@@ -283,8 +302,8 @@ nodes {
 }
 nodes {
   position {
-    x: -38.0
-    y: 120.0
+    x: -121.0
+    y: 83.0
   }
   size {
     x: 24.0
@@ -304,8 +323,8 @@ nodes {
 }
 nodes {
   position {
-    x: 38.0
-    y: 120.0
+    x: 115.0
+    y: 82.0
   }
   size {
     x: 24.0
@@ -325,7 +344,11 @@ nodes {
 }
 nodes {
   position {
-    y: 138.0
+    y: -39.0
+  }
+  scale {
+    x: 1.5
+    y: 1.5
   }
   size {
     x: 24.0
@@ -345,7 +368,7 @@ nodes {
 }
 nodes {
   position {
-    y: 160.0
+    y: 61.0
   }
   size {
     x: 36.0
@@ -446,8 +469,8 @@ nodes {
 }
 nodes {
   position {
-    x: -126.0
-    y: -114.0
+    x: -83.0
+    y: -44.0
   }
   size {
     x: 28.0
@@ -467,8 +490,8 @@ nodes {
 }
 nodes {
   position {
-    x: 122.0
-    y: -114.0
+    x: 79.0
+    y: -44.0
   }
   size {
     x: 28.0

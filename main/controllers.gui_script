@@ -31,6 +31,7 @@ local RAW_AXIS_LTRIGGER = 5
 local RAW_AXIS_RTRIGGER = 6
 
 local set_controller_title
+local set_controller_guid
 local set_controller_footer
 
 local OVERLAY_ACTIONS = {
@@ -156,7 +157,13 @@ local function detect_template_id(guid_info, gamepad_name)
 			return TEMPLATE_IDS.xbox
 		end
 		if guid_info.vendor == vendor_sony then
-			return TEMPLATE_IDS.ps4
+			local product_ps3 = 0x0268
+			local product_ps4 = 0x05c4
+			local product_ps4_v2 = 0x09cc
+			if guid_info.product == product_ps4_v2 or guid_info.product == product_ps4 or guid_info.product == product_ps3 then
+				return TEMPLATE_IDS.ps4
+			end
+			return TEMPLATE_IDS.ps5
 		end
 	end
 	-- hacks for now
@@ -376,6 +383,7 @@ local function create_controller(self, message)
 		gamepad = gamepad,
 		template_id = template_id,
 		title_node = clones[template_id .. "/title"],
+		guid_node = clones[template_id .. "/guid"],
 		footer_note_node = clones[template_id .. "/footer_note"],
 		overlay_nodes = {},
 		stick_text_nodes = {},
@@ -424,6 +432,7 @@ local function create_controller(self, message)
 
 	self.controllers[gamepad] = controller
 	set_controller_title(controller, gamepad_name)
+	set_controller_guid(controller, message.gamepad_guid)
 	relayout_controllers(self)
 	return controller
 end
@@ -436,6 +445,14 @@ function set_controller_title(controller, gamepad_name)
 	end
 end
 
+function set_controller_guid(controller, gamepad_guid)
+	if gamepad_guid ~= nil then
+		gui.set_text(controller.guid_node, tostring(gamepad_guid))
+	else
+		gui.set_text(controller.guid_node, "")
+	end
+end
+
 function set_controller_footer(controller, text)
 	gui.set_text(controller.footer_note_node, text)
 end
@@ -444,6 +461,10 @@ local function update_controller(self, gamepad, message_id, action)
 	local controller = self.controllers[gamepad]
 	if controller == nil then
 		return nil
+	end
+
+	if action.gamepad_guid ~= nil then
+		set_controller_guid(controller, action.gamepad_guid)
 	end
 
 	if message_id == GAMEPAD_RAW then
