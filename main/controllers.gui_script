@@ -142,7 +142,23 @@ local function string_contains(text, pattern)
 	return string.find(string.lower(text), string.lower(pattern), 1, true) ~= nil
 end
 
-local function detect_template_id(gamepad_name)
+local function detect_template_id(guid_info, gamepad_name)
+
+	local vendor_nintendo = 0x057e
+	local vendor_sony = 0x054c
+	local vendor_microsoft = 0x045e
+
+	if guid_info then
+		if guid_info.vendor == vendor_nintendo then
+			return TEMPLATE_IDS.switch
+		end
+		if guid_info.vendor == vendor_microsoft then
+			return TEMPLATE_IDS.xbox
+		end
+		if guid_info.vendor == vendor_sony then
+			return TEMPLATE_IDS.ps4
+		end
+	end
 	-- hacks for now
 	if gamepad_name == "Wireless Controller" then
 		return TEMPLATE_IDS.ps4
@@ -340,13 +356,16 @@ local function build_default_axis_text(node_id)
 	return STICK_TEXT_LABELS[node_id] .. " 0.000"
 end
 
-local function create_controller(self, gamepad, gamepad_name)
+local function create_controller(self, message)
+	local gamepad = message.gamepad
+	local gamepad_name = message.gamepad_name
+
 	local controller = self.controllers[gamepad]
 	if controller ~= nil then
 		return controller
 	end
 
-	local template_id = detect_template_id(gamepad_name)
+	local template_id = detect_template_id(message.gamepad_guid_info, gamepad_name)
 	local clones = gui.clone_tree(self.template_roots[template_id])
 	local root = clones[TEMPLATE_ROOTS[template_id]]
 
@@ -468,7 +487,9 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == GAMEPAD_CONNECTED then
-		create_controller(self, message.gamepad, message.gamepad_name)
+		create_controller(self, message)
+
+		pprint("CONNECTED", message)
 		return
 	end
 
