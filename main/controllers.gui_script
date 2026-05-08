@@ -22,6 +22,7 @@ local TEMPLATE_ROOTS = {
 
 local PANEL_SPACING = 32
 local PANEL_PADDING = 48
+local CONTROLLERS_PER_ROW = 3
 local STICK_OVERLAY_OFFSET_SCALE = 20
 local RAW_AXIS_LSTICK_X = 1
 local RAW_AXIS_LSTICK_Y = 2
@@ -183,19 +184,14 @@ local function detect_template_id(guid_info, gamepad_name)
 end
 
 local function get_grid_dimensions(controller_count)
-	if controller_count <= 1 then
-		return 1, 1
+	local rows = math.floor(controller_count / CONTROLLERS_PER_ROW)
+	local cols = math.min(controller_count, CONTROLLERS_PER_ROW)
+
+	if controller_count % CONTROLLERS_PER_ROW > 0 then
+		rows = rows + 1
 	end
 
-	if controller_count == 2 then
-		return 1, 2
-	end
-
-	if controller_count <= 4 then
-		return 2, 2
-	end
-
-	return math.ceil(controller_count / 4), 4
+	return rows, cols
 end
 
 local function get_panel_scale(self, rows, columns)
@@ -239,7 +235,24 @@ local function sorted_controller_keys(self)
 	return keys
 end
 
+local function get_controller_count(self)
+	local count = 0
+
+	for _ in pairs(self.controllers) do
+		count = count + 1
+	end
+
+	return count
+end
+
+local function update_empty_message(self)
+	gui.set_enabled(self.no_controller_text_node, get_controller_count(self) == 0)
+	gui.set_position(self.no_controller_text_node, vmath.vector3(gui.get_width() * 0.5, gui.get_height() * 0.5, 0))
+end
+
 local function relayout_controllers(self)
+	update_empty_message(self)
+
 	local keys = sorted_controller_keys(self)
 	local count = #keys
 
@@ -493,6 +506,7 @@ end
 
 function init(self)
 	self.grid_root = gui.get_node("grid_root")
+	self.no_controller_text_node = gui.get_node("no_controller_text")
 	self.template_roots = {
 		[TEMPLATE_IDS.generic] = gui.get_node(TEMPLATE_ROOTS[TEMPLATE_IDS.generic]),
 		[TEMPLATE_IDS.xbox] = gui.get_node(TEMPLATE_ROOTS[TEMPLATE_IDS.xbox]),
@@ -502,6 +516,7 @@ function init(self)
 	}
 	self.panel_size = gui.get_size(self.template_roots[TEMPLATE_IDS.generic])
 	self.controllers = {}
+	update_empty_message(self)
 
 	print("controllers.gui_script: ready")
 end

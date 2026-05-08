@@ -7,6 +7,10 @@ textures {
   name: "controllers"
   texture: "/assets/controllers.atlas"
 }
+textures {
+  name: "logo"
+  texture: "/main/main.atlas"
+}
 nodes {
   size {
     x: 1.0
@@ -1000,6 +1004,45 @@ nodes {
   parent: "switch_template/panel_root"
   template_node_child: true
 }
+nodes {
+  position {
+    x: 568.0
+    y: 320.0
+  }
+  size {
+    x: 760.0
+    y: 64.0
+  }
+  color {
+    x: 0.85882354
+    y: 0.9019608
+    z: 0.9647059
+  }
+  type: TYPE_TEXT
+  text: "Connect a controller!"
+  font: "default"
+  id: "no_controller_text"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 2.0
+    y: 93.0
+  }
+  size {
+    x: 90.0
+    y: 90.0
+  }
+  type: TYPE_BOX
+  texture: "logo/icon_180"
+  id: "defold_logo"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_NW
+  layer: "front"
+  inherit_alpha: true
+}
 layers {
   name: "background"
 }
@@ -1011,6 +1054,9 @@ layers {
 }
 layers {
   name: "text"
+}
+layers {
+  name: "front"
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
